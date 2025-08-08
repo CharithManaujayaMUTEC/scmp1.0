@@ -1,14 +1,29 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=ABeeZee&display=swap");
 
+/* Brand Colors */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Brand Palette */
+  --primary-green: #7ed957;
+  --primary-orange: #ff914d;
+  --primary-yellow: #ffde59;
+  --primary-teal: #0097b2;
+  --primary-white: #ffffff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-primaryGreen: var(--primary-green);
+  --color-primaryOrange: var(--primary-orange);
+  --color-primaryYellow: var(--primary-yellow);
+  --color-primaryTeal: var(--primary-teal);
+  --color-primaryWhite: var(--primary-white);
+
+  --font-sans: "ABeeZee", Arial, Helvetica, sans-serif;
   --font-mono: var(--font-geist-mono);
 }
 
@@ -22,5 +37,5 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "ABeeZee", Arial, Helvetica, sans-serif;
 }

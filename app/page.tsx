@@ -1,103 +1,182 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { FC } from "react";
+import { ABeeZee } from "next/font/google";
+import { motion } from "framer-motion";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { useSearchParams } from "next/navigation";
+
+const abeezee = ABeeZee({
+  weight: ["400"],
+  subsets: ["latin"],
+});
+
+const HomePage: FC = () => {
+  const role = useSearchParams().get("role");
+  const stories = [
+    {
+      quote:
+        "Since using SCMS, my crop yield has increased by 30%, and I no longer lose vegetables to spoilage.",
+      author: "Kumara, Farmer from Kurunegala",
+    },
+    {
+      quote:
+        "We now manage cold storage capacity efficiently and reduce waste drastically.",
+      author: "Nirmala, Cold Center Manager",
+    },
+    {
+      quote:
+        "The government dashboard helps us plan resources and respond faster to farmer needs.",
+      author: "Mr. Perera, Agriculture Officer",
+    },
+  ];
+
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className={`${abeezee.className}`}>
+      {/* Hero Section */}
+      <section
+        className="relative text-white py-28 bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1606788075761-2e24d0fce2c5?auto=format&fit=crop&w=1950&q=80')",
+        }}
+      >
+        <div className="absolute inset-0 bg-[#7ed957]/80"></div>
+        <div className="relative max-w-6xl mx-auto px-6 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold">
+            Smart Crop Management System
+          </h1>
+          <p className="mt-4 text-lg md:text-xl max-w-2xl mx-auto">
+            Connecting farmers, cold centers, and government agencies to
+            revolutionize agriculture in Sri Lanka.
+          </p>
+          <button
+            className="mt-6 px-6 py-3 bg-[#ff914d] text-white rounded-lg font-semibold hover:bg-[#ffde59] hover:text-black transition"
+            onClick={() => alert("Getting Started...")}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            Get Started
+          </button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </section>
+
+      {/* About Section */}
+      <section className="py-16 bg-white text-center">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-3xl font-bold mb-4 text-[#0097b2]">
+            About the Project
+          </h2>
+          <p className="text-gray-700 max-w-3xl mx-auto">
+            The Smart Crop Management System (SCMS) is a government-integrated
+            platform that links smallholder farmers, cold storage centers, crop
+            collection points, and government agencies under one ecosystem. It
+            uses real-time data, IoT sensors, and AI insights to reduce
+            post-harvest losses, improve yields, and enable data-driven decision
+            making.
+          </p>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-16 bg-[#f8f8f8]">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center mb-10 text-[#0097b2]">
+            Key Features
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <motion.div
+              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              transition={{ duration: 0.6 }}
+            >
+              <FeatureCard
+                title="Real-Time Monitoring"
+                description="IoT and satellite-based monitoring for crop health, weather, and soil conditions."
+              />
+            </motion.div>
+            <motion.div
+              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <FeatureCard
+                title="Cold Chain Integration"
+                description="Seamless connection to cold storage facilities for preserving quality and reducing waste."
+              />
+            </motion.div>
+            <motion.div
+              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <FeatureCard
+                title="Government Insights"
+                description="Data dashboards for agencies to plan, allocate resources, and track performance."
+              />
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Success Stories Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center mb-10 text-[#0097b2]">
+            Success Stories
+          </h2>
+          <Slider {...sliderSettings}>
+            {stories.map((story, index) => (
+              <div key={index}>
+                <StoryCard quote={story.quote} author={story.author} />
+              </div>
+            ))}
+          </Slider>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-[#0097b2] text-white py-6 text-center">
+        <p>
+          © {new Date().getFullYear()} Smart Crop Management System - Sri Lanka
+        </p>
       </footer>
-    </div>
+    </main>
   );
+};
+
+interface FeatureCardProps {
+  title: string;
+  description: string;
 }
+
+const FeatureCard: FC<FeatureCardProps> = ({ title, description }) => (
+  <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+    <h3 className="text-xl font-semibold mb-2 text-[#ff914d]">{title}</h3>
+    <p className="text-gray-600">{description}</p>
+  </div>
+);
+
+interface StoryCardProps {
+  quote: string;
+  author: string;
+}
+
+const StoryCard: FC<StoryCardProps> = ({ quote, author }) => (
+  <div className="p-6 bg-[#ffde59] rounded-lg shadow text-center max-w-lg mx-auto">
+    <p className="italic text-gray-800">"{quote}"</p>
+    <p className="mt-4 font-semibold">- {author}</p>
+  </div>
+);
+
+export default HomePage;
