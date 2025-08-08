@@ -7,6 +7,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useSearchParams } from "next/navigation";
+import Navbar from '@/components/Navbar';
 
 const abeezee = ABeeZee({
   weight: ["400"],
@@ -45,6 +46,7 @@ const HomePage: FC = () => {
 
   return (
     <main className={`${abeezee.className}`}>
+      <Navbar />
       {/* Hero Section */}
       <section
         className="relative text-white py-28 bg-cover bg-center"
