@@ -1,37 +1,21 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+// app/layout.tsx
 import "./globals.css";
+import { ABeeZee } from "next/font/google";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const abeezee = ABeeZee({
   subsets: ["latin"],
+  weight: "400",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
-  title: "SCMS - Smart Crop Management System",
-  description: "Integrated crop management platform for Sri Lankan agriculture with government cold center integration",
-  keywords: "agriculture, crop management, sri lanka, smart farming, IoT, cold storage",
-  authors: [{ name: "SCMS Team" }],
-  viewport: "width=device-width, initial-scale=1",
+export const metadata = {
+  title: "Smart Crop Management System",
+  description: "Role-based dashboard",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
-      >
-        {children}
-      </body>
+    <html lang="en">
+      <body className={abeezee.className}>{children}</body>
     </html>
   );
 }
