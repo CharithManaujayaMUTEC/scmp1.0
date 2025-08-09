@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useSearchParams } from "next/navigation";
 import Navbar from '@/app/components/Navbar';
+export const dynamic = 'force-dynamic'
 
 const abeezee = ABeeZee({
   weight: ["400"],
