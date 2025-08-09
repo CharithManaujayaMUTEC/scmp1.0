@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import Link from 'next/link';
-import SCMSHeader from '@/components/SCMSHeader';
+import SCMSHeader from '@/app/components/SCMSHeader';
 
 const RegistrationPage = () => {
   const [userType, setUserType] = useState('farmer');
