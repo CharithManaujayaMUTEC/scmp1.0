@@ -56,7 +56,7 @@ const Navbar = () => {
     },
   ]
 
-  const isActive = (href) => {
+  const isActive = (href: string) => {
     return pathname === href
   }
 
