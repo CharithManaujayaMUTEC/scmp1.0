@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import DashboardLayout from "../components/DashboardLayout";
 import QRCode from "react-qr-code";
 import { useSearchParams, useRouter } from "next/navigation";
+export const dynamic = 'force-dynamic'
 
 type ReceiptData = {
   requestId: string;
