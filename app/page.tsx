@@ -7,7 +7,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useSearchParams } from "next/navigation";
-import Navbar from '@/components/Navbar';
+import Navbar from '@/app/components/Navbar';
 
 const abeezee = ABeeZee({
   weight: ["400"],

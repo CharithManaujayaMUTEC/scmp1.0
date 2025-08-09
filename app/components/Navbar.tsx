@@ -10,7 +10,7 @@ const Navbar = () => {
   const navigationItems = [
     { name: 'Home', href: '/' },
     { name: 'Dashboard', href: '/dashboard' },
-    { name: 'Analytics', href: '/analytics' },
+    { name: 'E-Market', href: '/emarket' },
     { name: 'About', href: '/about' },
     { name: 'Contact Us', href: '/contact' },
   ]
@@ -53,7 +53,17 @@ const Navbar = () => {
                       : 'text-white/90 hover:text-white hover:bg-white/10 hover:backdrop-blur-sm'
                   }`}
                 >
-                  <span className="relative z-10">{item.name}</span>
+                  <span className="relative z-10">
+                    {item.name === 'E-Market' && (
+                      <span className="flex items-center space-x-1">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 9H21M7 13v-2a4 4 0 018 0v2m-8 0a2 2 0 104 0m0 0v6m0-6a2 2 0 104 0" />
+                        </svg>
+                        <span>{item.name}</span>
+                      </span>
+                    )}
+                    {item.name !== 'E-Market' && item.name}
+                  </span>
                   {!isActive(item.href) && (
                     <div className="absolute inset-0 bg-white/0 hover:bg-white/5 transition-all duration-300 rounded-xl"></div>
                   )}
@@ -110,7 +120,16 @@ const Navbar = () => {
                 }`}
                 onClick={() => setIsOpen(false)}
               >
-                {item.name}
+                {item.name === 'E-Market' ? (
+                  <span className="flex items-center space-x-2">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 9H21M7 13v-2a4 4 0 018 0v2m-8 0a2 2 0 104 0m0 0v6m0-6a2 2 0 104 0" />
+                    </svg>
+                    <span>{item.name}</span>
+                  </span>
+                ) : (
+                  item.name
+                )}
               </Link>
             ))}
             <div className="pt-4 mt-4 border-t border-white/20">

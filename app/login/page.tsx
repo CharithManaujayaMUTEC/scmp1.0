@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import SCMSHeader from '@/components/SCMSHeader';
+import SCMSHeader from '@/app/components/SCMSHeader';
 
 const dummyUsers = [
   { emailOrPhone: 'farmer@example.com', password: 'farmer123', role: 'farmer' },
