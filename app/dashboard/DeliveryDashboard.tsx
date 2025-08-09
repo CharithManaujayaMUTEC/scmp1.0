@@ -169,8 +169,8 @@ const DeliveryDashboard = () => {
       }}
       searchPlaceholder="Search deliveries..."
     >
-      {/* Stats Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      {/* Stats Overview - Mobile Responsive Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-6 lg:mb-8">
         <Widget 
           title="Active Deliveries" 
           value="8" 
@@ -205,8 +205,8 @@ const DeliveryDashboard = () => {
         />
       </div>
 
-      {/* Charts Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+      {/* Charts Section - Stack on Mobile */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 mb-6 lg:mb-8">
         <ChartCard 
           title="Monthly Delivery Performance" 
           dataKeys={["deliveries"]} 
@@ -223,23 +223,24 @@ const DeliveryDashboard = () => {
       </div>
 
       {/* Current Deliveries Section */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 mb-8">
-        <div className="p-6 border-b border-gray-200">
-          <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-black">Current Deliveries</h2>
-            <div className="flex items-center space-x-3">
-            <select
-  title="Filter Status"
-  value={filterStatus}
-  onChange={(e) => setFilterStatus(e.target.value)}
-  className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
->
-  <option value="all">All Status</option>
-  <option value="assigned">Assigned</option>
-  <option value="in-transit">In Transit</option>
-  <option value="completed">Completed</option>
-</select>
-              <button className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+      <div className="bg-white rounded-lg lg:rounded-xl shadow-sm border border-gray-100 mb-6 lg:mb-8">
+        {/* Header with Mobile-Optimized Controls */}
+        <div className="p-4 lg:p-6 border-b border-gray-200">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-0">
+            <h2 className="text-lg lg:text-xl font-bold text-black">Current Deliveries</h2>
+            <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-3">
+              <select
+                title="Filter Status"
+                value={filterStatus}
+                onChange={(e) => setFilterStatus(e.target.value)}
+                className="w-full sm:w-auto px-3 lg:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 text-sm lg:text-base"
+              >
+                <option value="all">All Status</option>
+                <option value="assigned">Assigned</option>
+                <option value="in-transit">In Transit</option>
+                <option value="completed">Completed</option>
+              </select>
+              <button className="flex items-center justify-center space-x-2 px-3 lg:px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm lg:text-base">
                 <Filter className="w-4 h-4" />
                 <span>Filter</span>
               </button>
@@ -247,16 +248,17 @@ const DeliveryDashboard = () => {
           </div>
         </div>
 
-        <div className="p-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+        {/* Delivery Cards - Mobile Optimized */}
+        <div className="p-4 lg:p-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6">
             {filteredDeliveries.map((delivery) => (
-              <div key={delivery.id} className={`bg-gray-50 rounded-xl border-l-4 ${getPriorityColor(delivery.priority)} hover:shadow-md transition-shadow`}>
-                <div className="p-6">
-                  {/* Header */}
-                  <div className="flex items-center justify-between mb-4">
+              <div key={delivery.id} className={`bg-gray-50 rounded-lg lg:rounded-xl border-l-4 ${getPriorityColor(delivery.priority)} hover:shadow-md transition-shadow`}>
+                <div className="p-4 lg:p-6">
+                  {/* Header - Mobile Optimized */}
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-2 sm:gap-0">
                     <div className="flex items-center space-x-3">
-                      <span className="font-bold text-lg text-black">{delivery.id}</span>
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(delivery.status)}`}>
+                      <span className="font-bold text-base lg:text-lg text-black">{delivery.id}</span>
+                      <span className={`px-2 lg:px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(delivery.status)}`}>
                         {delivery.status.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}
                       </span>
                     </div>
@@ -266,80 +268,80 @@ const DeliveryDashboard = () => {
                     </div>
                   </div>
 
-                  {/* Route */}
-                  <div className="space-y-3 mb-6">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                      <div>
-                        <p className="font-medium text-black">{delivery.pickup}</p>
-                        <p className="text-sm text-black">Pickup • {delivery.assignedTime}</p>
+                  {/* Route - Improved Mobile Layout */}
+                  <div className="space-y-3 mb-4 lg:mb-6">
+                    <div className="flex items-start space-x-3">
+                      <div className="w-3 h-3 bg-green-500 rounded-full mt-1 flex-shrink-0"></div>
+                      <div className="min-w-0 flex-1">
+                        <p className="font-medium text-black text-sm lg:text-base truncate">{delivery.pickup}</p>
+                        <p className="text-xs lg:text-sm text-gray-600">Pickup • {delivery.assignedTime}</p>
                       </div>
                     </div>
                     
-                    <div className="ml-1.5 w-px h-6 bg-gray-300"></div>
+                    <div className="ml-1.5 w-px h-4 lg:h-6 bg-gray-300"></div>
                     
-                    <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                      <div>
-                        <p className="font-medium text-black">{delivery.destination}</p>
-                        <p className="text-sm text-black">Delivery • by {delivery.deadline}</p>
+                    <div className="flex items-start space-x-3">
+                      <div className="w-3 h-3 bg-red-500 rounded-full mt-1 flex-shrink-0"></div>
+                      <div className="min-w-0 flex-1">
+                        <p className="font-medium text-black text-sm lg:text-base truncate">{delivery.destination}</p>
+                        <p className="text-xs lg:text-sm text-gray-600">Delivery • by {delivery.deadline}</p>
                       </div>
                     </div>
                   </div>
 
-                  {/* Details Grid */}
-                  <div className="grid grid-cols-2 gap-4 mb-6 text-sm">
+                  {/* Details Grid - Mobile Optimized */}
+                  <div className="grid grid-cols-2 gap-3 lg:gap-4 mb-4 lg:mb-6 text-xs lg:text-sm">
                     <div>
-                      <p className="text-black">Distance</p>
+                      <p className="text-gray-600">Distance</p>
                       <p className="font-medium text-black">{delivery.distance}</p>
                     </div>
                     <div>
-                      <p className="text-black">Est. Time</p>
+                      <p className="text-gray-600">Est. Time</p>
                       <p className="font-medium text-black">{delivery.estimatedTime}</p>
                     </div>
                     <div>
-                      <p className="text-black">Cargo</p>
-                      <p className="font-medium text-black">{delivery.cargo}</p>
+                      <p className="text-gray-600">Cargo</p>
+                      <p className="font-medium text-black truncate">{delivery.cargo}</p>
                     </div>
                     <div>
-                      <p className="text-black">Weight</p>
+                      <p className="text-gray-600">Weight</p>
                       <p className="font-medium text-black">{delivery.weight}</p>
                     </div>
                   </div>
 
-                  {/* Value and Contact */}
-                  <div className="flex items-center justify-between mb-4 p-3 bg-green-50 rounded-lg">
+                  {/* Value and Contact - Mobile Layout */}
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 p-3 bg-green-50 rounded-lg gap-2 sm:gap-0">
                     <div>
-                      <p className="text-sm text-black">Cargo Value</p>
-                      <p className="font-bold text-green-600 text-lg">{delivery.value}</p>
+                      <p className="text-xs lg:text-sm text-gray-600">Cargo Value</p>
+                      <p className="font-bold text-green-600 text-base lg:text-lg">{delivery.value}</p>
                     </div>
-                    <div className="text-right">
-                      <p className="text-sm text-black">Contact</p>
-                      <p className="font-medium text-black">{delivery.contact}</p>
+                    <div className="sm:text-right">
+                      <p className="text-xs lg:text-sm text-gray-600">Contact</p>
+                      <p className="font-medium text-black text-sm lg:text-base">{delivery.contact}</p>
                     </div>
                   </div>
 
-                  {/* Action Buttons */}
+                  {/* Action Buttons - Mobile Optimized */}
                   <div className="space-y-2">
                     {delivery.status === 'assigned' && (
-                      <div className="flex space-x-2">
-                        <button className="flex-1 bg-green-600 text-white py-3 px-4 rounded-lg hover:bg-green-700 transition-colors font-medium flex items-center justify-center space-x-2">
+                      <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
+                        <button className="flex-1 bg-green-600 text-white py-2.5 lg:py-3 px-4 rounded-lg hover:bg-green-700 transition-colors font-medium flex items-center justify-center space-x-2 text-sm lg:text-base">
                           <CheckCircle className="w-4 h-4" />
                           <span>Accept</span>
                         </button>
-                        <button className="flex-1 bg-gray-200 text-black py-3 px-4 rounded-lg hover:bg-gray-300 transition-colors font-medium">
+                        <button className="flex-1 bg-gray-200 text-black py-2.5 lg:py-3 px-4 rounded-lg hover:bg-gray-300 transition-colors font-medium text-sm lg:text-base">
                           Reject
                         </button>
                       </div>
                     )}
                     
                     {delivery.status === 'in-transit' && (
-                      <div className="flex space-x-2">
-                        <button className="flex-1 bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors font-medium flex items-center justify-center space-x-2">
+                      <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
+                        <button className="flex-1 bg-blue-600 text-white py-2.5 lg:py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors font-medium flex items-center justify-center space-x-2 text-sm lg:text-base">
                           <Eye className="w-4 h-4" />
                           <span>Track Route</span>
                         </button>
-                        <button className="flex-1 bg-green-600 text-white py-3 px-4 rounded-lg hover:bg-green-700 transition-colors font-medium flex items-center justify-center space-x-2">
+                        <button className="flex-1 bg-green-600 text-white py-2.5 lg:py-3 px-4 rounded-lg hover:bg-green-700 transition-colors font-medium flex items-center justify-center space-x-2 text-sm lg:text-base">
                           <CheckCircle className="w-4 h-4" />
                           <span>Complete</span>
                         </button>
@@ -347,7 +349,7 @@ const DeliveryDashboard = () => {
                     )}
                     
                     {delivery.status === 'completed' && (
-                      <button className="w-full bg-gray-100 text-black py-3 px-4 rounded-lg font-medium cursor-not-allowed flex items-center justify-center space-x-2">
+                      <button className="w-full bg-gray-100 text-black py-2.5 lg:py-3 px-4 rounded-lg font-medium cursor-not-allowed flex items-center justify-center space-x-2 text-sm lg:text-base">
                         <CheckCircle className="w-4 h-4" />
                         <span>Completed</span>
                       </button>
@@ -360,41 +362,43 @@ const DeliveryDashboard = () => {
         </div>
       </div>
 
-      {/* Performance Metrics */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-          <h3 className="text-lg font-bold text-black mb-4">Weekly Performance</h3>
+      {/* Performance Metrics - Mobile Stack */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
+        {/* Weekly Performance */}
+        <div className="bg-white p-4 lg:p-6 rounded-lg lg:rounded-xl shadow-sm border border-gray-100">
+          <h3 className="text-base lg:text-lg font-bold text-black mb-4">Weekly Performance</h3>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-black">On-Time Delivery</span>
+              <span className="text-black text-sm lg:text-base">On-Time Delivery</span>
               <div className="flex items-center space-x-2">
-                <div className="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div className="w-16 lg:w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
                   <div className="w-4/5 h-full bg-green-500"></div>
                 </div>
-                <span className="text-sm font-medium">98%</span>
+                <span className="text-xs lg:text-sm font-medium">98%</span>
               </div>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-black">Customer Rating</span>
+              <span className="text-black text-sm lg:text-base">Customer Rating</span>
               <div className="flex items-center space-x-2">
-                <div className="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div className="w-16 lg:w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
                   <div className="w-5/6 h-full bg-yellow-500"></div>
                 </div>
-                <span className="text-sm font-medium">4.9</span>
+                <span className="text-xs lg:text-sm font-medium">4.9</span>
               </div>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-black">Fuel Efficiency</span>
+              <span className="text-black text-sm lg:text-base">Fuel Efficiency</span>
               <div className="flex items-center space-x-2">
-                <div className="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div className="w-16 lg:w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
                   <div className="w-3/4 h-full bg-blue-500"></div>
                 </div>
-                <span className="text-sm font-medium">94%</span>
+                <span className="text-xs lg:text-sm font-medium">94%</span>
               </div>
             </div>
           </div>
         </div>
 
+        {/* Monthly Revenue Chart */}
         <ChartCard 
           title="Monthly Revenue" 
           dataKeys={["revenue"]}
@@ -403,29 +407,30 @@ const DeliveryDashboard = () => {
           height={200}
         />
 
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-          <h3 className="text-lg font-bold text-black mb-4">Quick Stats</h3>
-          <div className="space-y-4">
+        {/* Quick Stats */}
+        <div className="bg-white p-4 lg:p-6 rounded-lg lg:rounded-xl shadow-sm border border-gray-100">
+          <h3 className="text-base lg:text-lg font-bold text-black mb-4">Quick Stats</h3>
+          <div className="space-y-3 lg:space-y-4">
             <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
               <div className="flex items-center space-x-3">
-                <Timer className="w-5 h-5 text-blue-600" />
-                <span className="font-medium text-blue-900">Avg Delivery Time</span>
+                <Timer className="w-4 lg:w-5 h-4 lg:h-5 text-blue-600 flex-shrink-0" />
+                <span className="font-medium text-blue-900 text-sm lg:text-base">Avg Delivery Time</span>
               </div>
-              <span className="font-bold text-blue-600">2.3 hours</span>
+              <span className="font-bold text-blue-600 text-sm lg:text-base">2.3 hours</span>
             </div>
             <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
               <div className="flex items-center space-x-3">
-                <Fuel className="w-5 h-5 text-green-600" />
-                <span className="font-medium text-green-900">Fuel Cost</span>
+                <Fuel className="w-4 lg:w-5 h-4 lg:h-5 text-green-600 flex-shrink-0" />
+                <span className="font-medium text-green-900 text-sm lg:text-base">Fuel Cost</span>
               </div>
-              <span className="font-bold text-green-600">LKR 3,200</span>
+              <span className="font-bold text-green-600 text-sm lg:text-base">LKR 3,200</span>
             </div>
             <div className="flex items-center justify-between p-3 bg-purple-50 rounded-lg">
               <div className="flex items-center space-x-3">
-                <Route className="w-5 h-5 text-purple-600" />
-                <span className="font-medium text-purple-900">Routes Completed</span>
+                <Route className="w-4 lg:w-5 h-4 lg:h-5 text-purple-600 flex-shrink-0" />
+                <span className="font-medium text-purple-900 text-sm lg:text-base">Routes Completed</span>
               </div>
-              <span className="font-bold text-purple-600">156</span>
+              <span className="font-bold text-purple-600 text-sm lg:text-base">156</span>
             </div>
           </div>
         </div>

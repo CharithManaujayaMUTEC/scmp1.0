@@ -123,19 +123,31 @@ export default function FarmerDashboard() {
   // Render a request row with icons
   const RequestRow = ({ request }: { request: { id: number; title: string; date: string } }) => (
     <div className="flex justify-between items-center border-b py-2 last:border-b-0">
-      <div>
-        <p className="font-medium">{request.title}</p>
-        <p className="text-xs text-black">Date: {request.date}</p>
+      <div className="flex-1 min-w-0">
+        <p className="font-medium text-sm sm:text-base truncate">{request.title}</p>
+        <p className="text-xs text-black">{request.date}</p>
       </div>
-      <div className="flex space-x-3 text-black">
-        <button onClick={() => handleView(request.id)} title="View" className="hover:text-blue-600">
-          <FaEye />
+      <div className="flex space-x-2 sm:space-x-3 text-black ml-2">
+        <button 
+          onClick={() => handleView(request.id)} 
+          title="View" 
+          className="hover:text-blue-600 p-1 sm:p-2"
+        >
+          <FaEye className="w-3 h-3 sm:w-4 sm:h-4" />
         </button>
-        <button onClick={() => handleEdit(request.id)} title="Edit" className="hover:text-green-600">
-          <FaEdit />
+        <button 
+          onClick={() => handleEdit(request.id)} 
+          title="Edit" 
+          className="hover:text-green-600 p-1 sm:p-2"
+        >
+          <FaEdit className="w-3 h-3 sm:w-4 sm:h-4" />
         </button>
-        <button onClick={() => handleDelete(request.id)} title="Delete" className="hover:text-red-600">
-          <FaTrash />
+        <button 
+          onClick={() => handleDelete(request.id)} 
+          title="Delete" 
+          className="hover:text-red-600 p-1 sm:p-2"
+        >
+          <FaTrash className="w-3 h-3 sm:w-4 sm:h-4" />
         </button>
       </div>
     </div>
@@ -143,138 +155,151 @@ export default function FarmerDashboard() {
 
   return (
     <DashboardLayout menuItems={menuItems}>
-      <h1 className="text-2xl font-bold mb-6">Farmer Dashboard</h1>
+      <div className="px-2 sm:px-4 lg:px-6">
+        <h1 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Farmer Dashboard</h1>
 
-      <div className="grid md:grid-cols-3 gap-6">
-  {/* Farm Info Card */}
-  <Widget
-    title="Farm Information"
-    value={farmInfo.name}
-    subtitle={`Area: ${farmInfo.area} | Crops: ${farmInfo.crops.join(", ")}`}
-    color="bg-blue-500"
-    size="md"
-  />
+        {/* Top Cards - Responsive Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
+          {/* Farm Info Card */}
+          <Widget
+            title="Farm Information"
+            value={farmInfo.name}
+            subtitle={`Area: ${farmInfo.area} | Crops: ${farmInfo.crops.join(", ")}`}
+            color="bg-blue-500"
+            size="md"
+          />
 
-  {/* Income by Crop Card */}
-  <Widget
-    title="Income by Crop"
-    value=""
-    subtitle={Object.entries(incomeByCrop)
-      .map(([crop, income]) => `${crop}: ${income}`)
-      .join(" | ")}
-    color="bg-green-500"
-    size="md"
-  />
+          {/* Income by Crop Card */}
+          <Widget
+            title="Income by Crop"
+            value=""
+            subtitle={Object.entries(incomeByCrop)
+              .map(([crop, income]) => `${crop}: ${income}`)
+              .join(" | ")}
+            color="bg-green-500"
+            size="md"
+          />
 
-  {/* Time to Next Harvest Card */}
-  <Widget
-    title="Time to Next Harvest"
-    value=""
-    subtitle={Object.entries(timeToHarvest)
-      .map(([crop, time]) => `${crop}: ${time}`)
-      .join(" | ")}
-    color="bg-yellow-500"
-    size="md"
-  />
-</div>
-
-      {/* Alert Box and Feature Buttons BEFORE charts */}
-      <div className="mt-8 grid md:grid-cols-2 gap-6">
-        {/* Alert Box */}
-        <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded shadow">
-          <h2 className="font-semibold mb-2">Important Messages</h2>
-          <ul className="list-disc list-inside space-y-1">
-            {importantMessages.map((msg, idx) => (
-              <li key={idx}>{msg}</li>
-            ))}
-          </ul>
+          {/* Time to Next Harvest Card */}
+          <Widget
+            title="Time to Next Harvest"
+            value=""
+            subtitle={Object.entries(timeToHarvest)
+              .map(([crop, time]) => `${crop}: ${time}`)
+              .join(" | ")}
+            color="bg-yellow-500"
+            size="md"
+          />
         </div>
 
-        {/* Feature Buttons Box */}
-        <div className="bg-white p-4 rounded shadow flex flex-col space-y-3">
-          <h2 className="font-semibold mb-2">Quick Access Features</h2>
-          {featureButtons.map(({ label, onClick }, idx) => (
-            <button
-              key={idx}
-              onClick={onClick}
-              className="bg-green-600 text-white py-2 rounded hover:bg-green-700 transition"
-            >
-              {label}
-            </button>
-          ))}
+        {/* Alert Box and Feature Buttons - Mobile Stacked */}
+        <div className="mt-6 sm:mt-8 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+          {/* Alert Box */}
+          <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-3 sm:p-4 rounded shadow order-2 lg:order-1">
+            <h2 className="font-semibold mb-2 text-sm sm:text-base">Important Messages</h2>
+            <ul className="list-disc list-inside space-y-1">
+              {importantMessages.map((msg, idx) => (
+                <li key={idx} className="text-xs sm:text-sm">{msg}</li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Feature Buttons Box */}
+          <div className="bg-white p-3 sm:p-4 rounded shadow flex flex-col space-y-2 sm:space-y-3 order-1 lg:order-2">
+            <h2 className="font-semibold mb-2 text-sm sm:text-base">Quick Access Features</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 sm:gap-3">
+              {featureButtons.map(({ label, onClick }, idx) => (
+                <button
+                  key={idx}
+                  onClick={onClick}
+                  className="bg-green-600 text-white py-2 px-3 rounded hover:bg-green-700 transition text-xs sm:text-sm"
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
+
+        {/* Chart Cards - Mobile Stacked */}
+        <div className="mt-6 sm:mt-8 grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6">
+          <ChartCard
+            title="Monthly Crop Yield (kg)"
+            data={monthlyCropYieldData}
+            dataKeys={cropKeys}
+            dropdownOptions={crops}
+            selectedItems={selectedCrops}
+            onSelectionChange={setSelectedCrops}
+            timeframe={cropTimeframe}
+            setTimeframe={setCropTimeframe}
+          />
+          <ChartCard
+            title="Orders Trend"
+            data={ordersTrendData}
+            dataKeys={vendorKeys}
+            dropdownOptions={vendors}
+            selectedItems={selectedVendors}
+            onSelectionChange={setSelectedVendors}
+            timeframe={vendorTimeframe}
+            setTimeframe={setVendorTimeframe}
+          />
+        </div>
+
+        {/* Storage Requests Status - Responsive Layout */}
+        <section className="mt-8 sm:mt-12">
+          <h2 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Storage Requests Status</h2>
+          
+          {/* Mobile: Stacked, Tablet+: Side by side */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+            {/* Pending */}
+            <div className="bg-yellow-100 border border-yellow-400 rounded-lg p-3 sm:p-4 shadow flex flex-col">
+              <h3 className="text-base sm:text-lg font-bold mb-2 text-center">Pending Requests</h3>
+              <div className="flex-1 overflow-y-auto max-h-48 sm:max-h-56">
+                {storageRequests.pending.map((req) => (
+                  <RequestRow key={req.id} request={req} />
+                ))}
+                {storageRequests.pending.length === 0 && (
+                  <p className="text-center text-black text-sm">No pending requests</p>
+                )}
+              </div>
+            </div>
+
+            {/* Approved */}
+            <div className="bg-green-100 border border-green-400 rounded-lg p-3 sm:p-4 shadow flex flex-col">
+              <h3 className="text-base sm:text-lg font-bold mb-2 text-center">Approved Requests</h3>
+              <div className="flex-1 overflow-y-auto max-h-48 sm:max-h-56">
+                {storageRequests.approved.map((req) => (
+                  <RequestRow key={req.id} request={req} />
+                ))}
+                {storageRequests.approved.length === 0 && (
+                  <p className="text-center text-black text-sm">No approved requests</p>
+                )}
+              </div>
+            </div>
+
+            {/* Rejected */}
+            <div className="bg-red-100 border border-red-400 rounded-lg p-3 sm:p-4 shadow flex flex-col">
+              <h3 className="text-base sm:text-lg font-bold mb-2 text-center">Rejected Requests</h3>
+              <div className="flex-1 overflow-y-auto max-h-48 sm:max-h-56">
+                {storageRequests.rejected.map((req) => (
+                  <RequestRow key={req.id} request={req} />
+                ))}
+                {storageRequests.rejected.length === 0 && (
+                  <p className="text-center text-black text-sm">No rejected requests</p>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-4 sm:mt-6 flex justify-center">
+            <Link href="/request-storage">
+              <button className="bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded hover:bg-blue-700 transition text-sm sm:text-base w-full sm:w-auto max-w-sm">
+                + Create Storage Request
+              </button>
+            </Link>
+          </div>
+        </section>
       </div>
-
-      {/* Chart Cards */}
-      <div className="mt-8 grid md:grid-cols-2 gap-6">
-        <ChartCard
-          title="Monthly Crop Yield (kg)"
-          data={monthlyCropYieldData}
-          dataKeys={cropKeys}
-          dropdownOptions={crops}
-          selectedItems={selectedCrops}
-          onSelectionChange={setSelectedCrops}
-          timeframe={cropTimeframe}
-          setTimeframe={setCropTimeframe}
-        />
-        <ChartCard
-          title="Orders Trend"
-          data={ordersTrendData}
-          dataKeys={vendorKeys}
-          dropdownOptions={vendors}
-          selectedItems={selectedVendors}
-          onSelectionChange={setSelectedVendors}
-          timeframe={vendorTimeframe}
-          setTimeframe={setVendorTimeframe}
-        />
-      </div>
-
-      {/* Storage Requests Status with lists and icons */}
-      <section className="mt-12 max-w-full mx-auto">
-        <h2 className="text-xl font-semibold mb-4">Storage Requests Status</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          {/* Pending */}
-          <div className="bg-yellow-100 border border-yellow-400 rounded-lg p-4 shadow flex flex-col">
-            <h3 className="text-lg font-bold mb-2 text-center">Pending Requests</h3>
-            <div className="flex-1 overflow-y-auto max-h-56">
-              {storageRequests.pending.map((req) => (
-                <RequestRow key={req.id} request={req} />
-              ))}
-              {storageRequests.pending.length === 0 && <p className="text-center text-black">No pending requests</p>}
-            </div>
-          </div>
-
-          {/* Approved */}
-          <div className="bg-green-100 border border-green-400 rounded-lg p-4 shadow flex flex-col">
-            <h3 className="text-lg font-bold mb-2 text-center">Approved Requests</h3>
-            <div className="flex-1 overflow-y-auto max-h-56">
-              {storageRequests.approved.map((req) => (
-                <RequestRow key={req.id} request={req} />
-              ))}
-              {storageRequests.approved.length === 0 && <p className="text-center text-black">No approved requests</p>}
-            </div>
-          </div>
-
-          {/* Rejected */}
-          <div className="bg-red-100 border border-red-400 rounded-lg p-4 shadow flex flex-col">
-            <h3 className="text-lg font-bold mb-2 text-center">Rejected Requests</h3>
-            <div className="flex-1 overflow-y-auto max-h-56">
-              {storageRequests.rejected.map((req) => (
-                <RequestRow key={req.id} request={req} />
-              ))}
-              {storageRequests.rejected.length === 0 && <p className="text-center text-black">No rejected requests</p>}
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-6 flex justify-center">
-          <Link href="/request-storage">
-            <button className="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition">
-              + Create Storage Request
-            </button>
-          </Link>
-        </div>
-      </section>
     </DashboardLayout>
   );
 }
