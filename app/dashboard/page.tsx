@@ -1,33 +1,35 @@
-"use client";
+'use client';
 
-import FarmerDashboard from "./FarmerDashboard";
-import OfficerDashboard from "./OfficerDashboard";
-import ManagerDashboard from "./ManagerDashboard";
-import DeliveryDashboard from "./DeliveryDashboard";
-import VendorDashboard from "./VendorDashboard";
+import React from 'react';
+import FarmerDashboard from './FarmerDashboard';
+import OfficerDashboard from './OfficerDashboard';
+import ManagerDashboard from './ManagerDashboard';
+import VendorDashboard from './VendorDashboard';
+import DeliveryDashboard from './DeliveryDashboard';
 
-type UserRole = "farmer" | "officer" | "manager" | "delivery" | "vendor";
+interface DashboardPageProps {
+  searchParams?: {
+    role?: string;
+  };
+}
 
-// Temporary — in real app this should come from authentication/session
-const getUserRole = (): UserRole => {
-  return "officer"; // change to test different dashboards
+const DashboardPage: React.FC<DashboardPageProps> = ({ searchParams }) => {
+  const role = searchParams?.role || '';
+
+  switch (role.toLowerCase()) {
+    case 'farmer':
+      return <FarmerDashboard />;
+    case 'officer':
+      return <OfficerDashboard />;
+    case 'manager':
+      return <ManagerDashboard />;
+    case 'vendor':
+      return <VendorDashboard />;
+    case 'delivery':
+      return <DeliveryDashboard />;
+    default:
+      return <p className="p-4 text-red-600">Role not recognized. Please login again.</p>;
+  }
 };
 
-export default function DashboardPage() {
-  const userRole = getUserRole();
-
-  switch (userRole) {
-    case "farmer":
-      return <FarmerDashboard />;
-    case "officer":
-      return <OfficerDashboard />;
-    case "manager":
-      return <ManagerDashboard />;
-    case "delivery":
-      return <DeliveryDashboard />;
-    case "vendor":
-      return <VendorDashboard />;
-    default:
-      return <div>Invalid user role</div>;
-  }
-}
+export default DashboardPage;

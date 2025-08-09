@@ -1,7 +1,16 @@
 'use client';
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import SCMSHeader from '@/components/SCMSHeader';
+
+const dummyUsers = [
+  { emailOrPhone: 'farmer@example.com', password: 'farmer123', role: 'farmer' },
+  { emailOrPhone: 'officer@example.com', password: 'officer123', role: 'officer' },
+  { emailOrPhone: 'manager@example.com', password: 'manager123', role: 'manager' },
+  { emailOrPhone: 'vendor@example.com', password: 'vendor123', role: 'vendor' },
+  { emailOrPhone: 'delivery@example.com', password: 'delivery123', role: 'delivery' },
+];
 
 const LoginPage = () => {
   const [activeTab, setActiveTab] = useState('signin');
@@ -9,17 +18,30 @@ const LoginPage = () => {
     emailOrPhone: '',
     password: ''
   });
+  const [error, setError] = useState('');
+  const router = useRouter();
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
-  };
+  };  
 
   const handleSubmit = () => {
-    // Handle login logic here
-    console.log('Login data:', formData);
+    setError('');
+    const user = dummyUsers.find(
+      (u) =>
+        u.emailOrPhone.toLowerCase() === formData.emailOrPhone.toLowerCase() &&
+        u.password === formData.password
+    );
+
+    if (user) {
+      // Redirect to role-based dashboard
+      router.push(`/dashboard?role=${user.role}`);
+    } else {
+      setError('Invalid email/phone or password');
+    }
   };
 
   return (
@@ -99,6 +121,11 @@ const LoginPage = () => {
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
                   />
                 </div>
+
+                {/* Error Message */}
+                {error && (
+                  <div className="text-red-600 font-medium text-center">{error}</div>
+                )}
 
                 {/* Remember Me & Forgot Password */}
                 <div className="flex items-center justify-between">
