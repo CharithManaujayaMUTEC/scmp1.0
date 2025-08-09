@@ -52,37 +52,40 @@ export default function ManagerDashboard() {
 
   return (
     <DashboardLayout menuItems={menuItems}>
-      <h1 className="text-2xl font-bold mb-6">Government Manager Dashboard</h1>
+      {/* Title - Responsive text size */}
+      <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 sm:mb-6 px-2 sm:px-0">
+        Government Manager Dashboard
+      </h1>
 
-      {/* Cards Section */}
-      <section className="grid md:grid-cols-4 gap-6 mb-10">
+      {/* Cards Section - Mobile-first responsive grid */}
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-10 px-2 sm:px-0">
         <Widget title="Active Facilities" value={activeFacilities.toString()} />
         <Widget title="Total Crops Tracked" value={totalCropsTracked.toString()} />
         <Widget title="Vendors Approved" value={vendorsApproved.toString()} />
         <Widget title="Transport Partners" value={transportPartners.toString()} />
       </section>
 
-      {/* Charts Section */}
-      <section className="grid md:grid-cols-2 gap-6">
+      {/* Charts Section - Mobile-first responsive grid */}
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 px-2 sm:px-0">
         <ChartCard 
-          title="Facility Usage (%)" 
-          dataKeys={["usagePercent"]} 
-          data={facilityUsageData} 
+          title="Facility Usage (%)"
+          dataKeys={["usagePercent"]}
+          data={facilityUsageData}
         />
         <ChartCard 
-          title="Crop Production Trends" 
-          dataKeys={["production"]} 
-          data={cropProductionData} 
+          title="Crop Production Trends"
+          dataKeys={["production"]}
+          data={cropProductionData}
         />
         <ChartCard 
-          title="Market Price Trends" 
-          dataKeys={["priceIndex"]} 
-          data={marketPriceTrendData} 
+          title="Market Price Trends"
+          dataKeys={["priceIndex"]}
+          data={marketPriceTrendData}
         />
         <ChartCard 
-          title="Vendor Approvals Over Time" 
-          dataKeys={["approved"]} 
-          data={vendorApprovalData} 
+          title="Vendor Approvals Over Time"
+          dataKeys={["approved"]}
+          data={vendorApprovalData}
         />
       </section>
     </DashboardLayout>

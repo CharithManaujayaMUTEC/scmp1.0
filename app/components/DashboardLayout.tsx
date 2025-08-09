@@ -74,21 +74,27 @@ const DashboardLayout = ({
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024);
-      if (window.innerWidth < 1024) {
+      const mobile = window.innerWidth < 1024;
+      setIsMobile(mobile);
+      if (mobile) {
         setMobileMenuOpen(false);
+        setCollapsed(true); // Always collapse on mobile
+      } else {
+        setCollapsed(sidebarCollapsed);
       }
     };
 
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  }, [sidebarCollapsed]);
 
   const handleSidebarCollapse = (isCollapsed: boolean) => {
-    setCollapsed(isCollapsed);
-    if (onSidebarCollapse) {
-      onSidebarCollapse(isCollapsed);
+    if (!isMobile) {
+      setCollapsed(isCollapsed);
+      if (onSidebarCollapse) {
+        onSidebarCollapse(isCollapsed);
+      }
     }
   };
 
@@ -106,14 +112,23 @@ const DashboardLayout = ({
         />
       )}
 
-      {/* Sidebar */}
-      <div className="flex min-h-screen">
+      {/* Sidebar - Mobile Slide-in */}
+      <div className={`
+        ${isMobile 
+          ? `fixed inset-y-0 left-0 z-50 transform transition-transform duration-300 ease-in-out ${
+              mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+            }`
+          : 'relative'
+        }
+      `}>
         <Sidebar
           menuItems={menuItems}
           logo={logo}
           userInfo={user}
           collapsed={!isMobile && collapsed}
           onCollapse={!isMobile ? handleSidebarCollapse : undefined}
+          isMobile={isMobile}
+          onMobileClose={() => setMobileMenuOpen(false)}
         />
       </div>
 
@@ -134,18 +149,18 @@ const DashboardLayout = ({
 
         {/* Page Content */}
         <main className="flex-1 overflow-y-auto">
-          <div className="p-6">
+          <div className="p-3 sm:p-4 lg:p-6">
             {children}
           </div>
         </main>
 
-        {/* Footer */}
-        <footer className="bg-white border-t border-gray-200 px-6 py-4">
-          <div className="flex flex-col sm:flex-row justify-between items-center text-sm text-black">
-            <p>
+        {/* Footer - Responsive */}
+        <footer className="bg-white border-t border-gray-200 px-3 sm:px-6 py-3 sm:py-4">
+          <div className="flex flex-col sm:flex-row justify-between items-center text-xs sm:text-sm text-black gap-2 sm:gap-0">
+            <p className="text-center sm:text-left">
               © {new Date().getFullYear()} Smart Crop Management System - Sri Lanka
             </p>
-            <div className="flex items-center space-x-4 mt-2 sm:mt-0">
+            <div className="flex items-center space-x-3 sm:space-x-4">
               <a href="#" className="hover:text-black-900 transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-black-900 transition-colors">Terms of Service</a>
               <a href="#" className="hover:text-black-900 transition-colors">Support</a>
@@ -157,7 +172,7 @@ const DashboardLayout = ({
   );
 };
 
-// Utility component for quick layout setup
+// Enhanced QuickDashboardLayout with mobile considerations
 export const QuickDashboardLayout = ({ 
   children, 
   menuItems, 
