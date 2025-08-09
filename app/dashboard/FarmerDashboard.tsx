@@ -125,9 +125,9 @@ export default function FarmerDashboard() {
     <div className="flex justify-between items-center border-b py-2 last:border-b-0">
       <div>
         <p className="font-medium">{request.title}</p>
-        <p className="text-xs text-gray-600">Date: {request.date}</p>
+        <p className="text-xs text-black">Date: {request.date}</p>
       </div>
-      <div className="flex space-x-3 text-gray-600">
+      <div className="flex space-x-3 text-black">
         <button onClick={() => handleView(request.id)} title="View" className="hover:text-blue-600">
           <FaEye />
         </button>
@@ -240,7 +240,7 @@ export default function FarmerDashboard() {
               {storageRequests.pending.map((req) => (
                 <RequestRow key={req.id} request={req} />
               ))}
-              {storageRequests.pending.length === 0 && <p className="text-center text-gray-500">No pending requests</p>}
+              {storageRequests.pending.length === 0 && <p className="text-center text-black">No pending requests</p>}
             </div>
           </div>
 
@@ -251,7 +251,7 @@ export default function FarmerDashboard() {
               {storageRequests.approved.map((req) => (
                 <RequestRow key={req.id} request={req} />
               ))}
-              {storageRequests.approved.length === 0 && <p className="text-center text-gray-500">No approved requests</p>}
+              {storageRequests.approved.length === 0 && <p className="text-center text-black">No approved requests</p>}
             </div>
           </div>
 
@@ -262,7 +262,7 @@ export default function FarmerDashboard() {
               {storageRequests.rejected.map((req) => (
                 <RequestRow key={req.id} request={req} />
               ))}
-              {storageRequests.rejected.length === 0 && <p className="text-center text-gray-500">No rejected requests</p>}
+              {storageRequests.rejected.length === 0 && <p className="text-center text-black">No rejected requests</p>}
             </div>
           </div>
         </div>

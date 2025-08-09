@@ -134,7 +134,7 @@ export default function StorageRequestReceipt() {
         {/* QR Code */}
         <div className="flex flex-col items-center space-y-2">
           <QRCode value={qrData} size={150} />
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-black">
             Show this QR code at the storage facility gate
           </p>
         </div>

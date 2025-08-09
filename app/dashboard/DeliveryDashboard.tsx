@@ -108,7 +108,7 @@ const DeliveryDashboard = () => {
       case 'assigned': return 'bg-yellow-100 text-yellow-800';
       case 'in-transit': return 'bg-blue-100 text-blue-800';
       case 'completed': return 'bg-green-100 text-green-800';
-      default: return 'bg-gray-100 text-gray-800';
+      default: return 'bg-gray-100 text-black';
     }
   };
 
@@ -226,7 +226,7 @@ const DeliveryDashboard = () => {
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 mb-8">
         <div className="p-6 border-b border-gray-200">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-gray-800">Current Deliveries</h2>
+            <h2 className="text-xl font-bold text-black">Current Deliveries</h2>
             <div className="flex items-center space-x-3">
             <select
   title="Filter Status"
@@ -255,14 +255,14 @@ const DeliveryDashboard = () => {
                   {/* Header */}
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center space-x-3">
-                      <span className="font-bold text-lg text-gray-800">{delivery.id}</span>
+                      <span className="font-bold text-lg text-black">{delivery.id}</span>
                       <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(delivery.status)}`}>
                         {delivery.status.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}
                       </span>
                     </div>
                     <div className="flex items-center space-x-1">
                       <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                      <span className="text-sm text-gray-600">{delivery.customerRating}</span>
+                      <span className="text-sm text-black">{delivery.customerRating}</span>
                     </div>
                   </div>
 
@@ -271,8 +271,8 @@ const DeliveryDashboard = () => {
                     <div className="flex items-center space-x-3">
                       <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                       <div>
-                        <p className="font-medium text-gray-800">{delivery.pickup}</p>
-                        <p className="text-sm text-gray-600">Pickup • {delivery.assignedTime}</p>
+                        <p className="font-medium text-black">{delivery.pickup}</p>
+                        <p className="text-sm text-black">Pickup • {delivery.assignedTime}</p>
                       </div>
                     </div>
                     
@@ -281,8 +281,8 @@ const DeliveryDashboard = () => {
                     <div className="flex items-center space-x-3">
                       <div className="w-3 h-3 bg-red-500 rounded-full"></div>
                       <div>
-                        <p className="font-medium text-gray-800">{delivery.destination}</p>
-                        <p className="text-sm text-gray-600">Delivery • by {delivery.deadline}</p>
+                        <p className="font-medium text-black">{delivery.destination}</p>
+                        <p className="text-sm text-black">Delivery • by {delivery.deadline}</p>
                       </div>
                     </div>
                   </div>
@@ -290,32 +290,32 @@ const DeliveryDashboard = () => {
                   {/* Details Grid */}
                   <div className="grid grid-cols-2 gap-4 mb-6 text-sm">
                     <div>
-                      <p className="text-gray-500">Distance</p>
-                      <p className="font-medium text-gray-800">{delivery.distance}</p>
+                      <p className="text-black">Distance</p>
+                      <p className="font-medium text-black">{delivery.distance}</p>
                     </div>
                     <div>
-                      <p className="text-gray-500">Est. Time</p>
-                      <p className="font-medium text-gray-800">{delivery.estimatedTime}</p>
+                      <p className="text-black">Est. Time</p>
+                      <p className="font-medium text-black">{delivery.estimatedTime}</p>
                     </div>
                     <div>
-                      <p className="text-gray-500">Cargo</p>
-                      <p className="font-medium text-gray-800">{delivery.cargo}</p>
+                      <p className="text-black">Cargo</p>
+                      <p className="font-medium text-black">{delivery.cargo}</p>
                     </div>
                     <div>
-                      <p className="text-gray-500">Weight</p>
-                      <p className="font-medium text-gray-800">{delivery.weight}</p>
+                      <p className="text-black">Weight</p>
+                      <p className="font-medium text-black">{delivery.weight}</p>
                     </div>
                   </div>
 
                   {/* Value and Contact */}
                   <div className="flex items-center justify-between mb-4 p-3 bg-green-50 rounded-lg">
                     <div>
-                      <p className="text-sm text-gray-600">Cargo Value</p>
+                      <p className="text-sm text-black">Cargo Value</p>
                       <p className="font-bold text-green-600 text-lg">{delivery.value}</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-sm text-gray-600">Contact</p>
-                      <p className="font-medium text-gray-800">{delivery.contact}</p>
+                      <p className="text-sm text-black">Contact</p>
+                      <p className="font-medium text-black">{delivery.contact}</p>
                     </div>
                   </div>
 
@@ -327,7 +327,7 @@ const DeliveryDashboard = () => {
                           <CheckCircle className="w-4 h-4" />
                           <span>Accept</span>
                         </button>
-                        <button className="flex-1 bg-gray-200 text-gray-700 py-3 px-4 rounded-lg hover:bg-gray-300 transition-colors font-medium">
+                        <button className="flex-1 bg-gray-200 text-black py-3 px-4 rounded-lg hover:bg-gray-300 transition-colors font-medium">
                           Reject
                         </button>
                       </div>
@@ -347,7 +347,7 @@ const DeliveryDashboard = () => {
                     )}
                     
                     {delivery.status === 'completed' && (
-                      <button className="w-full bg-gray-100 text-gray-600 py-3 px-4 rounded-lg font-medium cursor-not-allowed flex items-center justify-center space-x-2">
+                      <button className="w-full bg-gray-100 text-black py-3 px-4 rounded-lg font-medium cursor-not-allowed flex items-center justify-center space-x-2">
                         <CheckCircle className="w-4 h-4" />
                         <span>Completed</span>
                       </button>
@@ -363,10 +363,10 @@ const DeliveryDashboard = () => {
       {/* Performance Metrics */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-          <h3 className="text-lg font-bold text-gray-800 mb-4">Weekly Performance</h3>
+          <h3 className="text-lg font-bold text-black mb-4">Weekly Performance</h3>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-gray-600">On-Time Delivery</span>
+              <span className="text-black">On-Time Delivery</span>
               <div className="flex items-center space-x-2">
                 <div className="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
                   <div className="w-4/5 h-full bg-green-500"></div>
@@ -375,7 +375,7 @@ const DeliveryDashboard = () => {
               </div>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-gray-600">Customer Rating</span>
+              <span className="text-black">Customer Rating</span>
               <div className="flex items-center space-x-2">
                 <div className="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
                   <div className="w-5/6 h-full bg-yellow-500"></div>
@@ -384,7 +384,7 @@ const DeliveryDashboard = () => {
               </div>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-gray-600">Fuel Efficiency</span>
+              <span className="text-black">Fuel Efficiency</span>
               <div className="flex items-center space-x-2">
                 <div className="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
                   <div className="w-3/4 h-full bg-blue-500"></div>
@@ -404,7 +404,7 @@ const DeliveryDashboard = () => {
         />
 
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-          <h3 className="text-lg font-bold text-gray-800 mb-4">Quick Stats</h3>
+          <h3 className="text-lg font-bold text-black mb-4">Quick Stats</h3>
           <div className="space-y-4">
             <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
               <div className="flex items-center space-x-3">

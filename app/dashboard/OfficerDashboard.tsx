@@ -68,7 +68,7 @@ export default function OfficerDashboard() {
             <div key={status} className="border rounded-lg p-4 shadow-sm">
               <h3 className="text-lg font-medium capitalize mb-3">{status} Requests</h3>
               {groupedRequests[status].length === 0 ? (
-                <p className="text-gray-500">No {status} requests</p>
+                <p className="text-black">No {status} requests</p>
               ) : (
                 <ul className="space-y-2">
                   {groupedRequests[status].map((req: StorageRequest) => (

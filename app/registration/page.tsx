@@ -90,7 +90,7 @@ const RegistrationPage = () => {
             <div className="p-8">
               {/* User Type Selection */}
               <div className="mb-6">
-                <p className="text-sm font-medium text-gray-700 mb-3">I am registering as a:</p>
+                <p className="text-sm font-medium text-black mb-3">I am registering as a:</p>
                 <div className="grid grid-cols-3 gap-4">
                   {userTypes.map((type) => (
                     <button
@@ -103,8 +103,8 @@ const RegistrationPage = () => {
                       }`}
                     >
                       <div className="text-3xl mb-2">{type.icon}</div>
-                      <div className="text-sm font-medium text-gray-900">{type.label}</div>
-                      <div className="text-xs text-gray-500">{type.subtitle}</div>
+                      <div className="text-sm font-medium text-black-900">{type.label}</div>
+                      <div className="text-xs text-black-500">{type.subtitle}</div>
                     </button>
                   ))}
                 </div>
@@ -114,7 +114,7 @@ const RegistrationPage = () => {
                 {/* Name Fields */}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                    <label className="block text-sm font-medium text-black mb-2">First Name</label>
                     <input
                       type="text"
                       name="firstName"
@@ -125,7 +125,7 @@ const RegistrationPage = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                    <label className="block text-sm font-medium text-black mb-2">Last Name</label>
                     <input
                       type="text"
                       name="lastName"
@@ -139,7 +139,7 @@ const RegistrationPage = () => {
 
                 {/* Email */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                  <label className="block text-sm font-medium text-black mb-2">Email Address</label>
                   <input
                     type="email"
                     name="emailAddress"
@@ -153,7 +153,7 @@ const RegistrationPage = () => {
                 {/* Phone and District */}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                    <label className="block text-sm font-medium text-black mb-2">Phone Number</label>
                     <input
                       type="tel"
                       name="phoneNumber"
@@ -163,7 +163,7 @@ const RegistrationPage = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">District</label>
+                    <label className="block text-sm font-medium text-black mb-2">District</label>
                     <select
                       name="district"
                       value={formData.district}
@@ -186,7 +186,7 @@ const RegistrationPage = () => {
 
                 {/* Password Fields */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Create Password</label>
+                  <label className="block text-sm font-medium text-black mb-2">Create Password</label>
                   <input
                     type="password"
                     name="password"
@@ -198,7 +198,7 @@ const RegistrationPage = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
+                  <label className="block text-sm font-medium text-black mb-2">Confirm Password</label>
                   <input
                     type="password"
                     name="confirmPassword"
@@ -219,7 +219,7 @@ const RegistrationPage = () => {
                       onChange={handleInputChange}
                       className="mt-1.5 w-5 h-5 text-green-600 border-gray-300 rounded focus:ring-green-500"
                     />
-                    <label className="text-sm text-gray-700">
+                    <label className="text-sm text-black">
                       I agree to the Terms of Service and Privacy Policy
                     </label>
                   </div>
@@ -232,7 +232,7 @@ const RegistrationPage = () => {
                       onChange={handleInputChange}
                       className="mt-1.5 w-5 h-5 text-green-600 border-gray-300 rounded focus:ring-green-500"
                     />
-                    <label className="text-sm text-gray-700">
+                    <label className="text-sm text-black">
                       I want to receive updates about SCMS features and agricultural insights
                     </label>
                   </div>
@@ -248,10 +248,10 @@ const RegistrationPage = () => {
 
               {/* Footer Links */}
               <div className="mt-8 text-center space-y-3">
-                <div className="text-sm text-gray-600">
+                <div className="text-sm text-black">
                   Already have an account? <Link href="/login" className="text-green-600 hover:text-green-700 font-medium">Sign in here</Link>
                 </div>
-                <div className="text-sm text-gray-600">
+                <div className="text-sm text-black">
                   Need help? <a href="#" className="text-green-600 hover:text-green-700 font-medium">Contact Support</a>
                 </div>
               </div>

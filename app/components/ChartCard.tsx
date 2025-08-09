@@ -235,7 +235,7 @@ const ChartCard = ({
   return (
     <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200">
       <div className="flex items-center justify-between mb-4 space-x-4">
-        <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
+        <h3 className="text-lg font-semibold text-black">{title}</h3>
 
         {/* Timeframe selector */}
         {setTimeframe && (
@@ -261,7 +261,7 @@ const ChartCard = ({
       {/* Dropdown multi-select for keys */}
       {dropdownOptions.length > 0 && onSelectionChange && (
         <div className="mb-4">
-          <label htmlFor="data-keys-select" className="block mb-1 font-medium text-gray-700">
+          <label htmlFor="data-keys-select" className="block mb-1 font-medium text-black">
             Select Data
           </label>
           <select

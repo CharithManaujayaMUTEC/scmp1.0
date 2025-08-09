@@ -55,7 +55,7 @@ const Widget = ({
     switch (trend) {
       case 'up': return 'text-green-600';
       case 'down': return 'text-red-600';
-      default: return 'text-gray-600';
+      default: return 'text-black';
     }
   };
 
@@ -83,7 +83,7 @@ const Widget = ({
       <div className="flex items-center justify-between">
         <div className="flex-1">
           <div className="flex items-center justify-between mb-2">
-            <h3 className="text-gray-500 text-sm font-medium uppercase tracking-wider">
+            <h3 className="text-black text-sm font-medium uppercase tracking-wider">
               {title}
             </h3>
             {change && (
@@ -94,7 +94,7 @@ const Widget = ({
             )}
           </div>
           
-          <p className={`${valueSizes[size]} font-bold text-gray-900 mb-1 group-hover:text-gray-800 transition-colors`}>
+          <p className={`${valueSizes[size]} font-bold text-black-900 mb-1 group-hover:text-black transition-colors`}>
             {value}
           </p>
           
@@ -107,7 +107,7 @@ const Widget = ({
                 </div>
               )}
               {subtitle && (
-                <p className="text-xs text-gray-500">{subtitle}</p>
+                <p className="text-xs text-black">{subtitle}</p>
               )}
             </div>
           )}

@@ -79,7 +79,7 @@ const HomePage: FC = () => {
           <h2 className="text-3xl font-bold mb-4 text-[#0097b2]">
             About the Project
           </h2>
-          <p className="text-gray-700 max-w-3xl mx-auto">
+          <p className="text-black max-w-3xl mx-auto">
             The Smart Crop Management System (SCMS) is a government-integrated
             platform that links smallholder farmers, cold storage centers, crop
             collection points, and government agencies under one ecosystem. It
@@ -165,7 +165,7 @@ interface FeatureCardProps {
 const FeatureCard: FC<FeatureCardProps> = ({ title, description }) => (
   <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
     <h3 className="text-xl font-semibold mb-2 text-[#ff914d]">{title}</h3>
-    <p className="text-gray-600">{description}</p>
+    <p className="text-black">{description}</p>
   </div>
 );
 
@@ -176,7 +176,7 @@ interface StoryCardProps {
 
 const StoryCard: FC<StoryCardProps> = ({ quote, author }) => (
   <div className="p-6 bg-[#ffde59] rounded-lg shadow text-center max-w-lg mx-auto">
-    <p className="italic text-gray-800">"{quote}"</p>
+    <p className="italic text-black">"{quote}"</p>
     <p className="mt-4 font-semibold">- {author}</p>
   </div>
 );

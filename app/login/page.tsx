@@ -98,7 +98,7 @@ const LoginPage = () => {
               <div className="max-w-2xl mx-auto space-y-5">
                 {/* Email/Phone Field */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Email Address or Phone Number</label>
+                  <label className="block text-sm font-medium text-black mb-2">Email Address or Phone Number</label>
                   <input
                     type="text"
                     name="emailOrPhone"
@@ -111,7 +111,7 @@ const LoginPage = () => {
 
                 {/* Password Field */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                  <label className="block text-sm font-medium text-black mb-2">Password</label>
                   <input
                     type="password"
                     name="password"
@@ -135,7 +135,7 @@ const LoginPage = () => {
                       id="rememberMe"
                       className="mt-1 w-5 h-5 text-green-600 border-gray-300 rounded focus:ring-green-500"
                     />
-                    <label htmlFor="rememberMe" className="text-sm text-gray-700">
+                    <label htmlFor="rememberMe" className="text-sm text-black">
                       Remember me
                     </label>
                   </div>
@@ -158,7 +158,7 @@ const LoginPage = () => {
                     <div className="w-full border-t border-gray-300"></div>
                   </div>
                   <div className="relative flex justify-center">
-                    <span className="px-4 bg-white text-sm text-gray-500">
+                    <span className="px-4 bg-white text-sm text-black">
                       or continue with
                     </span>
                   </div>
@@ -177,7 +177,7 @@ const LoginPage = () => {
                 </div>
 
                 {/* Sign Up Link */}
-                <div className="text-center text-sm text-gray-600 mt-6">
+                <div className="text-center text-sm text-black mt-6">
                   Don't have an account?{' '}
                   <Link href="/registration" className="text-green-600 hover:text-green-700 font-medium">
                     Register here

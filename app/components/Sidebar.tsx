@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { LucideIcon, Award, ChevronDown, ChevronRight, Menu } from "lucide-react";
+import Image from "next/image";
 
 interface MenuItem {
   label: string;
@@ -70,7 +71,7 @@ const Sidebar = ({
             ${level > 0 ? "ml-4 border-l-2 border-gray-200" : ""} hover:bg-gray-50`}
         >
           <div className="flex items-center space-x-3">
-            {item.icon && <item.icon className="w-5 h-5 text-gray-500" />}
+            {item.icon && <item.icon className="w-5 h-5 text-black" />}
             {!collapsed && <span>{item.label}</span>}
           </div>
           {!collapsed && hasChildren && (
@@ -94,11 +95,23 @@ const Sidebar = ({
         {!collapsed && (
           <div className="flex items-center space-x-3 space-y-1.5">
             <div className={`${logo.color} w-10 h-10 rounded-lg flex items-center justify-center`}>
-              {logo.icon ? <logo.icon className="w-6 h-6 text-white" /> : <span className="text-white">{logo.title[0]}</span>}
-            </div>
+  {logo.icon ? (
+    <logo.icon className="w-6 h-6 text-white" />
+  ) : (
+    // Replace this span with your image
+    <Image
+      src="/masterlogo.png"
+      alt="SCMS Logo"
+      width={40}
+      height={40}
+      className="object-contain"
+      priority
+    />
+  )}
+</div>
             <div>
               <h2 className="font-bold">{logo.title}</h2>
-              {logo.subtitle && <p className="text-xs text-gray-500">{logo.subtitle}</p>}
+              {logo.subtitle && <p className="text-xs text-black">{logo.subtitle}</p>}
             </div>
           </div>
         )}
@@ -108,7 +121,7 @@ const Sidebar = ({
           aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           className="p-2 rounded-lg hover:bg-gray-100"
         >
-          <Menu className="w-5 h-5 text-gray-600" />
+          <Menu className="w-5 h-5 text-black" />
         </button>
       </div>
 
@@ -119,7 +132,7 @@ const Sidebar = ({
       {userInfo && !collapsed && (
         <div className="p-4 border-t border-gray-200">
           <p className="font-medium">{userInfo.name}</p>
-          <p className="text-xs text-gray-500">{userInfo.role}</p>
+          <p className="text-xs text-black">{userInfo.role}</p>
           {userInfo.rating && (
             <div className="mt-2 bg-green-500 text-white p-2 rounded-lg flex items-center justify-between">
               <Award className="w-5 h-5" />

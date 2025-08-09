@@ -141,14 +141,14 @@ const DashboardLayout = ({
 
         {/* Footer */}
         <footer className="bg-white border-t border-gray-200 px-6 py-4">
-          <div className="flex flex-col sm:flex-row justify-between items-center text-sm text-gray-600">
+          <div className="flex flex-col sm:flex-row justify-between items-center text-sm text-black">
             <p>
               © {new Date().getFullYear()} Smart Crop Management System - Sri Lanka
             </p>
             <div className="flex items-center space-x-4 mt-2 sm:mt-0">
-              <a href="#" className="hover:text-gray-900 transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-gray-900 transition-colors">Terms of Service</a>
-              <a href="#" className="hover:text-gray-900 transition-colors">Support</a>
+              <a href="#" className="hover:text-black-900 transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-black-900 transition-colors">Terms of Service</a>
+              <a href="#" className="hover:text-black-900 transition-colors">Support</a>
             </div>
           </div>
         </footer>
