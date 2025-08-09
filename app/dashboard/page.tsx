@@ -10,7 +10,7 @@ type UserRole = "farmer" | "officer" | "manager" | "delivery" | "vendor";
 
 // Temporary — in real app this should come from authentication/session
 const getUserRole = (): UserRole => {
-  return "officer"; // change to test different dashboards
+  return "delivery"; // change to test different dashboards
 };
 
 export default function DashboardPage() {
