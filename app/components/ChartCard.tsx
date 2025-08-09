@@ -16,6 +16,7 @@ import {
   BarChart,
   Bar,
   Legend,
+  LabelProps,       // <-- Import LabelProps here
 } from "recharts";
 
 interface ChartCardProps {
@@ -37,6 +38,14 @@ interface ChartCardProps {
 }
 
 const COLORS = ['#7ed957', '#ff914d', '#0097b2', '#ffde59', '#8b5cf6', '#ef4444'];
+
+// Properly typed Pie label render function
+const renderPieLabel = (props: LabelProps) => {
+  // Cast props to expected keys, since LabelProps is generic
+  const { name, percent } = props as { name: string; percent?: number };
+  const displayPercent = percent ? (percent * 100).toFixed(0) : '0';
+  return `${name} ${displayPercent}%`;
+};
 
 const ChartCard = ({
   title,
@@ -138,9 +147,7 @@ const ChartCard = ({
               innerRadius={30}
               paddingAngle={2}
               dataKey="value"
-              label={({ name, percent }: { name: string; percent: number }) =>
-                `${name} ${((percent ?? 0) * 100).toFixed(0)}%`
-              }
+              label={renderPieLabel}   // Use the typed label function here
               labelLine={false}
             >
               {data.map((entry, index) => (
