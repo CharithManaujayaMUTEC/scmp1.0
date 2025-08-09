@@ -107,11 +107,7 @@ const DashboardLayout = ({
       )}
 
       {/* Sidebar */}
-      <div className={`
-        ${isMobile ? 'fixed inset-y-0 left-0 z-50' : 'relative'} 
-        ${isMobile && !mobileMenuOpen ? '-translate-x-full' : 'translate-x-0'}
-        transition-transform duration-300 ease-in-out
-      `}>
+      <div className="flex min-h-screen">
         <Sidebar
           menuItems={menuItems}
           logo={logo}

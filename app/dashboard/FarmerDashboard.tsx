@@ -146,37 +146,37 @@ export default function FarmerDashboard() {
       <h1 className="text-2xl font-bold mb-6">Farmer Dashboard</h1>
 
       <div className="grid md:grid-cols-3 gap-6">
-        {/* Farm Info Card */}
-        <Widget title="Farm Information">
-          <p>
-            <strong>Name:</strong> {farmInfo.name}
-          </p>
-          <p>
-            <strong>Area:</strong> {farmInfo.area}
-          </p>
-          <p>
-            <strong>Crops:</strong> {farmInfo.crops.join(", ")}
-          </p>
-        </Widget>
+  {/* Farm Info Card */}
+  <Widget
+    title="Farm Information"
+    value={farmInfo.name}
+    subtitle={`Area: ${farmInfo.area} | Crops: ${farmInfo.crops.join(", ")}`}
+    color="bg-blue-500"
+    size="md"
+  />
 
-        {/* Income by Crop Card */}
-        <Widget title="Income by Crop">
-          {Object.entries(incomeByCrop).map(([crop, income]) => (
-            <p key={crop}>
-              <strong>{crop}:</strong> {income}
-            </p>
-          ))}
-        </Widget>
+  {/* Income by Crop Card */}
+  <Widget
+    title="Income by Crop"
+    value=""
+    subtitle={Object.entries(incomeByCrop)
+      .map(([crop, income]) => `${crop}: ${income}`)
+      .join(" | ")}
+    color="bg-green-500"
+    size="md"
+  />
 
-        {/* Time to Next Harvest Card */}
-        <Widget title="Time to Next Harvest">
-          {Object.entries(timeToHarvest).map(([crop, time]) => (
-            <p key={crop}>
-              <strong>{crop}:</strong> {time}
-            </p>
-          ))}
-        </Widget>
-      </div>
+  {/* Time to Next Harvest Card */}
+  <Widget
+    title="Time to Next Harvest"
+    value=""
+    subtitle={Object.entries(timeToHarvest)
+      .map(([crop, time]) => `${crop}: ${time}`)
+      .join(" | ")}
+    color="bg-yellow-500"
+    size="md"
+  />
+</div>
 
       {/* Alert Box and Feature Buttons BEFORE charts */}
       <div className="mt-8 grid md:grid-cols-2 gap-6">

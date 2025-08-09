@@ -209,14 +209,14 @@ const DeliveryDashboard = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         <ChartCard 
           title="Monthly Delivery Performance" 
-          dataKey="deliveries" 
+          dataKeys={["deliveries"]} 
           data={deliveryData}
           type="area"
           color="#7ed957"
         />
         <ChartCard 
           title="Delivery Status Distribution" 
-          dataKey="value" 
+          dataKeys={["value"]} 
           data={statusData}
           type="pie"
         />
@@ -228,16 +228,17 @@ const DeliveryDashboard = () => {
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-bold text-gray-800">Current Deliveries</h2>
             <div className="flex items-center space-x-3">
-              <select 
-                value={filterStatus}
-                onChange={(e) => setFilterStatus(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
-              >
-                <option value="all">All Status</option>
-                <option value="assigned">Assigned</option>
-                <option value="in-transit">In Transit</option>
-                <option value="completed">Completed</option>
-              </select>
+            <select
+  title="Filter Status"
+  value={filterStatus}
+  onChange={(e) => setFilterStatus(e.target.value)}
+  className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+>
+  <option value="all">All Status</option>
+  <option value="assigned">Assigned</option>
+  <option value="in-transit">In Transit</option>
+  <option value="completed">Completed</option>
+</select>
               <button className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
                 <Filter className="w-4 h-4" />
                 <span>Filter</span>
@@ -396,7 +397,7 @@ const DeliveryDashboard = () => {
 
         <ChartCard 
           title="Monthly Revenue" 
-          dataKey="revenue" 
+          dataKeys={["revenue"]}
           data={deliveryData}
           color="#0097b2"
           height={200}
