@@ -19,10 +19,18 @@ import {
   LabelProps,
 } from "recharts";
 
+// Define proper types for chart data
+interface ChartDataItem {
+  month?: string;
+  name?: string;
+  value?: number;
+  [key: string]: string | number | undefined;
+}
+
 interface ChartCardProps {
   title: string;
   dataKeys: string[];
-  data: any[];
+  data: ChartDataItem[];
   type?: "line" | "area" | "pie" | "bar";
   color?: string;
   height?: number;
@@ -35,11 +43,17 @@ interface ChartCardProps {
   setTimeframe?: (timeframe: "weekly" | "monthly" | "annually") => void;
 }
 
+// Define proper type for pie label props
+interface PieLabelProps extends LabelProps {
+  name?: string;
+  percent?: number;
+}
+
 const COLORS = ['#7ed957', '#ff914d', '#0097b2', '#ffde59', '#8b5cf6', '#ef4444'];
 
 // Mobile-optimized Pie label render function
-const renderPieLabel = (props: LabelProps, isMobile: boolean) => {
-  const { name, percent } = props as any;
+const renderPieLabel = (props: PieLabelProps, isMobile: boolean): string => {
+  const { name, percent } = props;
   const displayPercent = percent ? (percent * 100).toFixed(0) : '0';
   
   // For mobile, show shorter labels
@@ -47,7 +61,7 @@ const renderPieLabel = (props: LabelProps, isMobile: boolean) => {
     return `${displayPercent}%`;
   }
   
-  return `${name} ${displayPercent}%`;
+  return `${name || 'Unknown'} ${displayPercent}%`;
 };
 
 const ChartCard = ({
@@ -55,7 +69,6 @@ const ChartCard = ({
   dataKeys,
   data,
   type = "line",
-  color = "#7ed957",
   height = 250,
   showGrid = true,
   showLegend = false,
@@ -94,22 +107,6 @@ const ChartCard = ({
     if (isMobile) return Math.max(200, height - 50); // Mobile
     if (isTablet) return Math.max(220, height - 30); // Tablet
     return height; // Desktop
-  };
-
-  // Handle dropdown filter changes
-  const handleDropdownChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = event.target.value;
-    if (!onSelectionChange) return;
-
-    if (value === "All") {
-      onSelectionChange(dropdownOptions.filter(opt => opt !== "All"));
-    } else {
-      if (selectedItems.includes(value)) {
-        onSelectionChange(selectedItems.filter(i => i !== value));
-      } else {
-        onSelectionChange([...selectedItems, value]);
-      }
-    }
   };
 
   // Handle timeframe changes
@@ -196,7 +193,7 @@ const ChartCard = ({
               innerRadius={isMobile ? 20 : 30}
               paddingAngle={2}
               dataKey="value"
-              label={!isMobile ? (props) => renderPieLabel(props, isMobile) : false}
+              label={!isMobile ? (props) => renderPieLabel(props as PieLabelProps, isMobile) : false}
               labelLine={false}
             >
               {data.map((entry, index) => (

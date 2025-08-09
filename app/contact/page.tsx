@@ -174,7 +174,7 @@ const ContactPage: FC = () => {
               Get in Touch with Us
             </h1>
             <p className="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed">
-              We're here to help you make the most of the Smart Crop Management System. Reach out for support, feedback, or partnership opportunities.
+              We&apos;re here to help you make the most of the Smart Crop Management System. Reach out for support, feedback, or partnership opportunities.
             </p>
           </motion.div>
         </div>
@@ -226,7 +226,7 @@ const ContactPage: FC = () => {
           >
             <h2 className="text-3xl font-bold text-[#0097b2] mb-6">Send Us a Message</h2>
             <p className="text-gray-600 text-lg">
-              Have a specific question or need assistance? Fill out the form below and we'll get back to you promptly.
+              Have a specific question or need assistance? Fill out the form below and we&apos;ll get back to you promptly.
             </p>
           </motion.div>
 
@@ -451,7 +451,7 @@ const ContactPage: FC = () => {
             © {new Date().getFullYear()} Smart Crop Management System - Sri Lanka
           </p>
           <p className="text-sm opacity-75 mt-2">
-            Your success is our priority. We're here to help you grow.
+            Your success is our priority. We&apos;re here to help you grow.
           </p>
         </div>
       </footer>

@@ -18,6 +18,25 @@ const HomePage: FC = () => {
   const role = useSearchParams().get("role");
   const [currentSlide, setCurrentSlide] = useState(0);
   const [statsVisible, setStatsVisible] = useState(false);
+  const [windowSize, setWindowSize] = useState({ width: 1920, height: 1080 });
+  const [isClient, setIsClient] = useState(false);
+
+  // Handle window size safely
+  useEffect(() => {
+    setIsClient(true);
+    
+    const updateWindowSize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    };
+
+    updateWindowSize();
+    window.addEventListener('resize', updateWindowSize);
+    
+    return () => window.removeEventListener('resize', updateWindowSize);
+  }, []);
 
   const stories = [
     {
@@ -121,28 +140,30 @@ const HomePage: FC = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-br from-[#7ed957]/90 via-[#0097b2]/85 to-[#ff914d]/75" />
           
-          {/* Floating Elements */}
-          <div className="absolute inset-0 overflow-hidden">
-            {[...Array(6)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-2 h-2 bg-white/20 rounded-full"
-                initial={{ 
-                  x: Math.random() * window.innerWidth, 
-                  y: Math.random() * window.innerHeight 
-                }}
-                animate={{
-                  y: [0, -20, 0],
-                  opacity: [0.2, 0.8, 0.2]
-                }}
-                transition={{
-                  duration: 3 + Math.random() * 2,
-                  repeat: Infinity,
-                  delay: i * 0.5
-                }}
-              />
-            ))}
-          </div>
+          {/* Floating Elements - Only render on client */}
+          {isClient && (
+            <div className="absolute inset-0 overflow-hidden">
+              {[...Array(6)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-2 h-2 bg-white/20 rounded-full"
+                  initial={{ 
+                    x: Math.random() * windowSize.width, 
+                    y: Math.random() * windowSize.height 
+                  }}
+                  animate={{
+                    y: [0, -20, 0],
+                    opacity: [0.2, 0.8, 0.2]
+                  }}
+                  transition={{
+                    duration: 3 + Math.random() * 2,
+                    repeat: Infinity,
+                    delay: i * 0.5
+                  }}
+                />
+              ))}
+            </div>
+          )}
         </div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
@@ -551,7 +572,7 @@ const StoryCard: FC<StoryCardProps> = ({ quote, author, rating = 5, image }) => 
     </div>
     
     <blockquote className="text-lg sm:text-xl italic text-gray-800 mb-6 leading-relaxed">
-      "{quote}"
+      &quot;{quote}&quot;
     </blockquote>
     
     <div className="text-center">

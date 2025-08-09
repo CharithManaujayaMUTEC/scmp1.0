@@ -1,12 +1,27 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 import Link from 'next/link';
 import SCMSHeader from '@/app/components/SCMSHeader';
 
+// Define types for better type safety
+interface FormData {
+  firstName: string;
+  lastName: string;
+  emailAddress: string;
+  phoneNumber: string;
+  district: string;
+  password: string;
+  confirmPassword: string;
+  agreeToTerms: boolean;
+  receiveUpdates: boolean;
+}
+
+type UserType = 'farmer' | 'vendor' | 'storage';
+
 const RegistrationPage = () => {
-  const [userType, setUserType] = useState('farmer');
-  const [activeTab, setActiveTab] = useState('register');
-  const [formData, setFormData] = useState({
+  const [userType, setUserType] = useState<UserType>('farmer');
+  const [activeTab, setActiveTab] = useState<'signin' | 'register'>('register');
+  const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
     emailAddress: '',
@@ -18,23 +33,30 @@ const RegistrationPage = () => {
     receiveUpdates: false
   });
 
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
+  // Fix 1: Using ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    
+    // Type guard for checkbox inputs
+    const isCheckbox = (e.target as HTMLInputElement).type === 'checkbox';
+    const checked = isCheckbox ? (e.target as HTMLInputElement).checked : undefined;
+    
     setFormData({
       ...formData,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: isCheckbox ? checked : value
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     // Handle registration logic here
     console.log('Registration data:', { userType, ...formData });
   };
 
   const userTypes = [
-    { id: 'farmer', label: 'Farmer', icon: '👨‍🌾', subtitle: 'Grow & sell crops' },
-    { id: 'vendor', label: 'Vendor', icon: '🏪', subtitle: 'Buy & distribute' },
-    { id: 'storage', label: 'Storage Center', icon: '🏢', subtitle: 'Manage facilities' }
+    { id: 'farmer' as const, label: 'Farmer', icon: '👨‍🌾', subtitle: 'Grow & sell crops' },
+    { id: 'vendor' as const, label: 'Vendor', icon: '🏪', subtitle: 'Buy & distribute' },
+    { id: 'storage' as const, label: 'Storage Center', icon: '🏢', subtitle: 'Manage facilities' }
   ];
 
   return (
@@ -53,7 +75,7 @@ const RegistrationPage = () => {
               <div className="relative z-10">
                 <div className="text-4xl mb-3 animate-bounce">🌱</div>
                 <h2 className="text-2xl font-bold text-white mb-2 drop-shadow-lg">Welcome to SCMS</h2>
-                <p className="text-green-100 font-medium">Join Sri Lanka's agricultural revolution</p>
+                <p className="text-green-100 font-medium">Join Sri Lanka&apos;s agricultural revolution</p>
                 <div className="mt-4 flex justify-center space-x-1">
                   <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
                   <div className="w-2 h-2 bg-white rounded-full animate-pulse delay-150"></div>
